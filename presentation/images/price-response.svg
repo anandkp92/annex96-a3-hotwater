@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 320" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!-- Left chart: Price -->
+  <text x="200" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">Price ($/kWh)</text>
+
+  <!-- Y axis -->
+  <line x1="60" y1="40" x2="60" y2="250" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="50" y="62" text-anchor="end" font-size="10" fill="#7f8c8d">$0.13</text>
+  <text x="50" y="109" text-anchor="end" font-size="10" fill="#7f8c8d">$0.12</text>
+  <text x="50" y="156" text-anchor="end" font-size="10" fill="#7f8c8d">$0.11</text>
+  <text x="50" y="203" text-anchor="end" font-size="10" fill="#7f8c8d">$0.10</text>
+  <text x="50" y="250" text-anchor="end" font-size="10" fill="#7f8c8d">$0.09</text>
+
+  <!-- X axis -->
+  <line x1="60" y1="250" x2="390" y2="250" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="87" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">0</text>
+  <text x="145" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">6</text>
+  <text x="210" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">12</text>
+  <text x="280" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">18</text>
+  <text x="370" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">24</text>
+  <text x="220" y="290" text-anchor="middle" font-size="11" fill="#5d6d7e">Hour</text>
+
+  <!-- Price bars - high price early, low price late -->
+  <!-- Hours 0-5: high ~$0.12 -->
+  <rect x="67" y="100" width="10" height="150" fill="#e74c3c" opacity="0.7"/>
+  <rect x="80" y="85" width="10" height="165" fill="#e74c3c" opacity="0.7"/>
+  <rect x="93" y="90" width="10" height="160" fill="#e74c3c" opacity="0.7"/>
+  <rect x="106" y="95" width="10" height="155" fill="#e74c3c" opacity="0.7"/>
+  <rect x="119" y="98" width="10" height="152" fill="#e74c3c" opacity="0.7"/>
+  <rect x="132" y="102" width="10" height="148" fill="#e74c3c" opacity="0.7"/>
+  <!-- Hours 6-11: medium ~$0.11 -->
+  <rect x="145" y="140" width="10" height="110" fill="#f39c12" opacity="0.6"/>
+  <rect x="158" y="148" width="10" height="102" fill="#f39c12" opacity="0.6"/>
+  <rect x="171" y="135" width="10" height="115" fill="#f39c12" opacity="0.6"/>
+  <rect x="184" y="145" width="10" height="105" fill="#f39c12" opacity="0.6"/>
+  <rect x="197" y="150" width="10" height="100" fill="#f39c12" opacity="0.6"/>
+  <rect x="210" y="147" width="10" height="103" fill="#f39c12" opacity="0.6"/>
+  <!-- Hours 12-17: medium -->
+  <rect x="223" y="148" width="10" height="102" fill="#f39c12" opacity="0.6"/>
+  <rect x="236" y="95" width="10" height="155" fill="#e74c3c" opacity="0.7"/>
+  <rect x="249" y="82" width="10" height="168" fill="#e74c3c" opacity="0.7"/>
+  <rect x="262" y="80" width="10" height="170" fill="#e74c3c" opacity="0.7"/>
+  <rect x="275" y="136" width="10" height="114" fill="#f39c12" opacity="0.6"/>
+  <rect x="288" y="155" width="10" height="95" fill="#f39c12" opacity="0.6"/>
+  <!-- Hours 18-23: low ~$0.10 -->
+  <rect x="301" y="168" width="10" height="82" fill="#27ae60" opacity="0.6"/>
+  <rect x="314" y="186" width="10" height="64" fill="#27ae60" opacity="0.6"/>
+  <rect x="327" y="195" width="10" height="55" fill="#27ae60" opacity="0.6"/>
+  <rect x="340" y="200" width="10" height="50" fill="#27ae60" opacity="0.6"/>
+  <rect x="353" y="190" width="10" height="60" fill="#27ae60" opacity="0.6"/>
+  <rect x="366" y="178" width="10" height="72" fill="#27ae60" opacity="0.6"/>
+
+  <!-- Right chart: HP Operation -->
+  <text x="660" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">HP Operation (kWh)</text>
+
+  <!-- Y axis -->
+  <line x1="500" y1="40" x2="500" y2="250" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="490" y="62" text-anchor="end" font-size="10" fill="#7f8c8d">4.5</text>
+  <text x="490" y="156" text-anchor="end" font-size="10" fill="#7f8c8d">2.25</text>
+  <text x="490" y="250" text-anchor="end" font-size="10" fill="#7f8c8d">0</text>
+
+  <!-- X axis -->
+  <line x1="500" y1="250" x2="830" y2="250" stroke="#bdc3c7" stroke-width="1"/>
+  <text x="527" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">0</text>
+  <text x="585" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">6</text>
+  <text x="650" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">12</text>
+  <text x="720" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">18</text>
+  <text x="810" y="268" text-anchor="middle" font-size="10" fill="#7f8c8d">24</text>
+  <text x="660" y="290" text-anchor="middle" font-size="11" fill="#5d6d7e">Hour</text>
+
+  <!-- HP operation bars - off during expensive, on during cheap -->
+  <!-- Hours 0-5: OFF (shed) -->
+  <!-- Hours 6-12: some on -->
+  <rect x="585" y="150" width="10" height="100" fill="#3498db" opacity="0.7"/>
+  <rect x="598" y="100" width="10" height="150" fill="#3498db" opacity="0.7"/>
+  <rect x="611" y="150" width="10" height="100" fill="#3498db" opacity="0.7"/>
+  <rect x="624" y="100" width="10" height="150" fill="#3498db" opacity="0.7"/>
+  <rect x="637" y="60" width="10" height="190" fill="#3498db" opacity="0.7"/>
+  <rect x="650" y="100" width="10" height="150" fill="#3498db" opacity="0.7"/>
+  <!-- Hours 13-17: some on -->
+  <rect x="676" y="150" width="10" height="100" fill="#3498db" opacity="0.7"/>
+  <!-- Hours 18-23: FULL ON (load up / adv load up) -->
+  <rect x="741" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+  <rect x="754" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+  <rect x="767" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+  <rect x="780" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+  <rect x="793" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+  <rect x="806" y="60" width="10" height="190" fill="#2ecc71" opacity="0.8"/>
+
+  <!-- Legend -->
+  <rect x="180" y="300" width="12" height="12" fill="#e74c3c" opacity="0.7"/>
+  <text x="198" y="311" font-size="10" fill="#5d6d7e">High price (Shed)</text>
+  <rect x="340" y="300" width="12" height="12" fill="#f39c12" opacity="0.6"/>
+  <text x="358" y="311" font-size="10" fill="#5d6d7e">Medium price</text>
+  <rect x="480" y="300" width="12" height="12" fill="#27ae60" opacity="0.6"/>
+  <text x="498" y="311" font-size="10" fill="#5d6d7e">Low price (Load Up)</text>
+  <rect x="640" y="300" width="12" height="12" fill="#2ecc71" opacity="0.8"/>
+  <text x="658" y="311" font-size="10" fill="#5d6d7e">HP full power</text>
+</svg>

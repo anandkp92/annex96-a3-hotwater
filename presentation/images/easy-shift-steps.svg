@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 350" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7f8c8d"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1 -->
+  <rect x="20" y="20" width="250" height="70" rx="8" fill="#ebf5fb" stroke="#3498db" stroke-width="2"/>
+  <circle cx="45" cy="55" r="16" fill="#3498db"/>
+  <text x="45" y="60" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">1</text>
+  <text x="155" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a5276">Rank hours by price</text>
+  <text x="155" y="68" text-anchor="middle" font-size="11" fill="#5d6d7e">Sort cheapest → most expensive</text>
+
+  <!-- Arrow down -->
+  <line x1="145" y1="90" x2="145" y2="115" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- Step 2 -->
+  <rect x="20" y="120" width="250" height="70" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <circle cx="45" cy="155" r="16" fill="#f39c12"/>
+  <text x="45" y="160" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">2</text>
+  <text x="155" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="#7d6608">Find unsatisfied hour</text>
+  <text x="155" y="168" text-anchor="middle" font-size="11" fill="#5d6d7e">First hour where load not met</text>
+
+  <!-- Arrow down -->
+  <line x1="145" y1="190" x2="145" y2="215" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- Step 3 -->
+  <rect x="20" y="220" width="250" height="70" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <circle cx="45" cy="255" r="16" fill="#27ae60"/>
+  <text x="45" y="260" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">3</text>
+  <text x="155" y="248" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">Turn on cheapest hour</text>
+  <text x="155" y="268" text-anchor="middle" font-size="11" fill="#5d6d7e">Assign HP at max capacity</text>
+
+  <!-- Right column -->
+  <!-- Step 4 -->
+  <rect x="340" y="20" width="250" height="70" rx="8" fill="#fdedec" stroke="#e74c3c" stroke-width="2"/>
+  <circle cx="365" cy="55" r="16" fill="#e74c3c"/>
+  <text x="365" y="60" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">4</text>
+  <text x="475" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#922b21">Storage constraint</text>
+  <text x="475" y="68" text-anchor="middle" font-size="11" fill="#5d6d7e">Reduce if tank would overflow</text>
+
+  <!-- Arrow down -->
+  <line x1="465" y1="90" x2="465" y2="115" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- Step 5 -->
+  <rect x="340" y="120" width="250" height="70" rx="8" fill="#f4ecf7" stroke="#8e44ad" stroke-width="2"/>
+  <circle cx="365" cy="155" r="16" fill="#8e44ad"/>
+  <text x="365" y="160" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">5</text>
+  <text x="475" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="#6c3483">Cheaper hours check</text>
+  <text x="475" y="168" text-anchor="middle" font-size="11" fill="#5d6d7e">Save capacity for future savings</text>
+
+  <!-- Arrow down -->
+  <line x1="465" y1="190" x2="465" y2="215" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- Step 6 -->
+  <rect x="340" y="220" width="250" height="70" rx="8" fill="#eaf2f8" stroke="#2980b9" stroke-width="2"/>
+  <circle cx="365" cy="255" r="16" fill="#2980b9"/>
+  <text x="365" y="260" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">6</text>
+  <text x="475" y="248" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a5276">Repeat</text>
+  <text x="475" y="268" text-anchor="middle" font-size="11" fill="#5d6d7e">Until all hours satisfied</text>
+
+  <!-- Loop arrow from step 6 back to step 2 -->
+  <path d="M590 255 Q640 255 640 155 Q640 55 590 55" fill="none" stroke="#7f8c8d" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <line x1="270" y1="255" x2="340" y2="255" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="270" y1="55" x2="340" y2="55" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- Converged box -->
+  <rect x="680" y="105" width="160" height="70" rx="30" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
+  <text x="760" y="137" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">Converged!</text>
+  <text x="760" y="157" text-anchor="middle" font-size="11" fill="#5d6d7e">Feasible schedule</text>
+  <line x1="590" y1="255" x2="760" y2="175" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+
+  <!-- Bottom note -->
+  <text x="430" y="330" text-anchor="middle" font-size="12" fill="#95a5a6">Near-optimal scheduling without full optimization solvers</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8e44ad"/>
+    </marker>
+  </defs>
+
+  <!-- Price Signal -->
+  <rect x="20" y="30" width="210" height="120" rx="10" fill="#ebf5fb" stroke="#3498db" stroke-width="2"/>
+  <text x="125" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">OpenADR Price Signal</text>
+  <text x="125" y="85" text-anchor="middle" font-size="12" fill="#5d6d7e">$/kWh per hour</text>
+  <rect x="45" y="100" width="160" height="35" rx="5" fill="#d4e6f1" stroke="#85c1e9" stroke-width="1"/>
+  <text x="125" y="122" text-anchor="middle" font-size="11" fill="#2471a3" font-family="monospace">[$0.10, $0.12, $0.08, ...]</text>
+
+  <!-- Arrow 1 -->
+  <line x1="230" y1="90" x2="290" y2="90" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#ar)"/>
+
+  <!-- Easy Shift -->
+  <rect x="300" y="30" width="210" height="120" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="405" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">Easy Shift</text>
+  <text x="405" y="85" text-anchor="middle" font-size="12" fill="#5d6d7e">HP output kWh/hr</text>
+  <rect x="325" y="100" width="160" height="35" rx="5" fill="#d5f5e3" stroke="#82e0aa" stroke-width="1"/>
+  <text x="405" y="122" text-anchor="middle" font-size="11" fill="#1e8449" font-family="monospace">[0, 4.5, 4.5, 0, ...]</text>
+
+  <!-- Arrow 2 -->
+  <line x1="510" y1="90" x2="570" y2="90" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#ar)"/>
+
+  <!-- CTA-2045 -->
+  <rect x="580" y="30" width="300" height="120" rx="10" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="730" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#7d6608">CTA-2045 Schedule</text>
+
+  <!-- Signal chips -->
+  <rect x="600" y="72" width="54" height="24" rx="4" fill="#e74c3c"/>
+  <text x="627" y="89" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Shed</text>
+
+  <rect x="662" y="72" width="60" height="24" rx="4" fill="#95a5a6"/>
+  <text x="692" y="89" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Normal</text>
+
+  <rect x="730" y="72" width="64" height="24" rx="4" fill="#3498db"/>
+  <text x="762" y="89" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Load Up</text>
+
+  <rect x="802" y="72" width="60" height="24" rx="4" fill="#27ae60"/>
+  <text x="832" y="89" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Adv LU</text>
+
+  <rect x="605" y="108" width="260" height="30" rx="5" fill="#fdebd0" stroke="#f5cba7" stroke-width="1"/>
+  <text x="735" y="128" text-anchor="middle" font-size="11" fill="#7d6608" font-family="monospace">[-1, 2, 2, -1, 1, 0, ...]</text>
+
+  <!-- Bottom label -->
+  <text x="450" y="190" text-anchor="middle" font-size="13" fill="#8e44ad" font-weight="bold">Full pipeline: prices → optimal schedule → device commands</text>
+</svg>

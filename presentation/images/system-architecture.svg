@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!-- Olivine API Box -->
+  <rect x="20" y="40" width="220" height="140" rx="12" fill="#eaf2f8" stroke="#2980b9" stroke-width="2"/>
+  <text x="130" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a5276">Olivine API</text>
+  <text x="130" y="100" text-anchor="middle" font-size="13" fill="#5d6d7e">Price Source</text>
+  <line x1="50" y1="115" x2="210" y2="115" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="130" y="137" text-anchor="middle" font-size="12" fill="#5d6d7e">eTOU-Dyn</text>
+  <text x="130" y="155" text-anchor="middle" font-size="12" fill="#5d6d7e">hourly prices</text>
+
+  <!-- Arrow 1 -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980b9"/>
+    </marker>
+  </defs>
+  <line x1="240" y1="110" x2="320" y2="110" stroke="#2980b9" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="280" y="100" text-anchor="middle" font-size="11" fill="#2980b9">POST</text>
+
+  <!-- VTN Box -->
+  <rect x="330" y="20" width="240" height="180" rx="12" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="55" text-anchor="middle" font-size="16" font-weight="bold" fill="#7d6608">OpenADR 3 VTN</text>
+  <text x="450" y="78" text-anchor="middle" font-size="13" fill="#7d6608">Server</text>
+  <line x1="360" y1="90" x2="540" y2="90" stroke="#f0e68c" stroke-width="1"/>
+  <text x="450" y="112" text-anchor="middle" font-size="12" fill="#5d6d7e">POST /programs</text>
+  <text x="450" y="132" text-anchor="middle" font-size="12" fill="#5d6d7e">POST /events</text>
+  <text x="450" y="152" text-anchor="middle" font-size="12" fill="#5d6d7e">GET /events</text>
+  <text x="450" y="175" text-anchor="middle" font-size="11" fill="#95a5a6">OAuth 2.0 auth</text>
+
+  <!-- Arrow 2 -->
+  <line x1="570" y1="110" x2="650" y2="110" stroke="#2980b9" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="610" y="100" text-anchor="middle" font-size="11" fill="#2980b9">GET</text>
+
+  <!-- VEN Box -->
+  <rect x="660" y="40" width="220" height="140" rx="12" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="770" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e8449">VEN + Controls</text>
+  <text x="770" y="100" text-anchor="middle" font-size="13" fill="#1e8449">This Toolkit</text>
+  <line x1="690" y1="115" x2="850" y2="115" stroke="#d5f5e3" stroke-width="1"/>
+  <text x="770" y="137" text-anchor="middle" font-size="12" fill="#5d6d7e">Easy Shift algo</text>
+  <text x="770" y="155" text-anchor="middle" font-size="12" fill="#5d6d7e">→ CTA-2045 schedule</text>
+
+  <!-- VTN Options Box -->
+  <line x1="450" y1="200" x2="450" y2="240" stroke="#f39c12" stroke-width="2"/>
+  <rect x="310" y="240" width="280" height="120" rx="10" fill="#fff" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="450" y="268" text-anchor="middle" font-size="14" font-weight="bold" fill="#7d6608">Two VTN Options</text>
+  <line x1="330" y1="280" x2="570" y2="280" stroke="#f0e68c" stroke-width="1"/>
+  <rect x="330" y="295" width="110" height="50" rx="6" fill="#ebf5fb" stroke="#3498db" stroke-width="1"/>
+  <text x="385" y="316" text-anchor="middle" font-size="11" font-weight="bold" fill="#2471a3">A: Python</text>
+  <text x="385" y="333" text-anchor="middle" font-size="10" fill="#5d6d7e">ref. impl.</text>
+  <rect x="460" y="295" width="110" height="50" rx="6" fill="#fef9e7" stroke="#e67e22" stroke-width="1"/>
+  <text x="515" y="316" text-anchor="middle" font-size="11" font-weight="bold" fill="#ca6f1e">B: Rust</text>
+  <text x="515" y="333" text-anchor="middle" font-size="10" fill="#5d6d7e">openleadr-rs</text>
+</svg>

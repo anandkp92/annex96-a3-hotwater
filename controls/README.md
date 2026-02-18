@@ -63,8 +63,9 @@ Typical applications include:
 
 | File | Description |
 |---|---|
-| `__init__.py` | Package exports: `easy_shift`, `get_storage`, `iteration_plot` |
-| `easy_shift.py` | Algorithm implementation |
+| `__init__.py` | Package exports for Easy Shift and CTA-2045 functions |
+| `easy_shift.py` | Easy Shift algorithm implementation |
+| `cta2045.py` | CTA-2045 schedule generation from Easy Shift output or prices |
 
 ## Parameters
 
@@ -149,6 +150,47 @@ iteration_plot(operation, parameters)
 
 # Get storage levels over time
 storage = get_storage(operation['control'], parameters)
+```
+
+## CTA-2045 Schedule Generation
+
+The `cta2045` module converts Easy Shift output (or raw price signals) into CTA-2045-B Level 2 demand response commands for water heaters.
+
+### CTA-2045-B Commands
+
+| Signal | Code | Water Heater Action |
+|---|---|---|
+| **Shed** | -1 | Lower setpoint, disable heat pump — coast on stored energy |
+| **Normal** | 0 | Default operation |
+| **Load Up** | 1 | Raise setpoint, pre-heat the tank |
+| **Advanced Load Up** | 2 | Aggressively heat tank (max setpoint, tight deadband) |
+
+### Two Approaches
+
+**1. From Easy Shift output** (`easy_shift_to_cta2045`): Maps continuous HP output to discrete CTA-2045 commands based on output level relative to max capacity:
+- Output = 0 → Shed
+- Output < 30% of max → Normal
+- Output 30–80% of max → Load Up
+- Output ≥ 80% of max → Advanced Load Up
+
+**2. From prices directly** (`prices_to_cta2045`): Uses price percentiles to classify hours without running Easy Shift first. Default thresholds: above 75th percentile → Shed, 50–75th → Normal, 25–50th → Load Up, below 25th → Advanced Load Up.
+
+### Usage
+
+```python
+from controls import easy_shift, easy_shift_to_cta2045, prices_to_cta2045
+from controls import format_schedule, plot_schedule
+
+# Approach 1: From Easy Shift output
+operation, converged = easy_shift(parameters)
+cta_schedule = easy_shift_to_cta2045(operation, parameters)
+
+# Approach 2: Directly from prices
+cta_schedule = prices_to_cta2045(prices)
+
+# Display results
+print(format_schedule(cta_schedule))
+plot_schedule(cta_schedule)
 ```
 
 ## Reference

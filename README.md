@@ -12,8 +12,9 @@ annex96-a3-hotwater/
 ├── instructions-openleadr.ipynb     # Setup guide using the Rust-based openleadr-rs VTN
 ├── quickstart.ipynb                 # Interactive demo (Python VTN)
 ├── quickstart-openleadr.ipynb       # Interactive demo (openleadr-rs VTN)
-├── controls/                        # Easy Shift control algorithm (Python package)
+├── controls/                        # Easy Shift algorithm and CTA-2045 schedule generation
 ├── sample_data/                     # Pre-built OpenADR 3 JSON payloads
+├── presentation/                    # Marp presentation slides and SVG diagrams
 └── OpenADR 3.0 Specification_3.0.1/ # OpenADR 3.0.1 spec (YAML, PDFs)
 ```
 
@@ -54,7 +55,7 @@ Uses the open-source Rust-based OpenADR 3.0 implementation. Requires Docker (for
 | `instructions-openleadr.ipynb` | Same for the Rust-based openleadr-rs VTN (requires Docker for PostgreSQL) |
 | `quickstart.ipynb` | End-to-end Python notebook: fetch prices, publish to VTN, read as VEN, run Easy Shift |
 | `quickstart-openleadr.ipynb` | Same workflow using the openleadr-rs VTN |
-| `controls/` | Easy Shift algorithm — converts price signals to optimal HPWH schedules |
+| `controls/` | Easy Shift algorithm and CTA-2045 schedule generation |
 | `sample_data/` | Example OpenADR 3 program and event JSON files |
 | `OpenADR 3.0 Specification_3.0.1/` | Normative YAML spec and reference PDFs (download from [OpenADR Alliance](https://www.openadr.org/)) |
 
