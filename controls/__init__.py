@@ -1,4 +1,4 @@
-from .easy_shift import easy_shift, get_storage, iteration_plot
+from .easy_shift_public import easy_shift, get_storage, iteration_plot
 from .cta2045 import (
     easy_shift_to_cta2045,
     prices_to_cta2045,

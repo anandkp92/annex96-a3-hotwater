@@ -64,7 +64,7 @@ Typical applications include:
 | File | Description |
 |---|---|
 | `__init__.py` | Package exports for Easy Shift and CTA-2045 functions |
-| `easy_shift.py` | Easy Shift algorithm implementation |
+| `easy_shift_public.py` | Easy Shift algorithm — independent implementation based on the public algorithm description |
 | `cta2045.py` | CTA-2045 schedule generation from Easy Shift output or prices |
 
 ## Parameters
@@ -109,8 +109,7 @@ parameters = {
 - **`operation`** — dict with lists of length = horizon:
   - `control` — heat pump output (kWh) at each hour
   - `control_max` — effective max output (may be reduced by storage constraint)
-  - `control_min` — min output
-  - `mode` — reserved for future use
+  - `mode` — reserved for future use (NaN-filled)
   - `cost` — electricity cost at each hour
 - **`converged`** — `True` if a feasible schedule was found, `False` if the algorithm could not satisfy all hours
 

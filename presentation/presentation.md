@@ -237,7 +237,7 @@ annex96-a3-hotwater/
 ├── quickstart.ipynb                  # Demo: Python VTN
 ├── quickstart-openleadr.ipynb        # Demo: openleadr-rs VTN
 ├── controls/                         # Control algorithms
-│   ├── easy_shift.py                 # Easy Shift scheduling
+│   ├── easy_shift_public.py          # Easy Shift scheduling (independent implementation)
 │   └── cta2045.py                    # CTA-2045 schedule generation
 ├── sample_data/                      # Example JSON payloads
 └── presentation/                     # This presentation
@@ -276,6 +276,8 @@ annex96-a3-hotwater/
 *B. Woo-Shem and P. Grant, LBNL*
 
 **Core idea:** Rank hours by electricity cost and iteratively assign HP operation to the cheapest available hours while respecting storage constraints.
+
+> Implementation in `easy_shift_public.py` is written independently from the public algorithm description.
 
 ![w:750](images/easy-shift-steps.svg)
 
