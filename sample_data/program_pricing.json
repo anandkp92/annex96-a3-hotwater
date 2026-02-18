@@ -1,0 +1,16 @@
+{
+  "programName": "etou-dynamic-pricing",
+  "programLongName": "Dynamic Time-of-Use Pricing (eTOU-Dyn)",
+  "programType": "PRICING",
+  "retailerName": "PUC",
+  "retailerLongName": "Pacific Utility Company",
+  "country": "US",
+  "principalSubdivision": "CA",
+  "payloadDescriptors": [
+    {
+      "payloadType": "PRICE",
+      "units": "KWH",
+      "currency": "USD"
+    }
+  ]
+}

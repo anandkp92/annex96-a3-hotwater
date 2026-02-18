@@ -1,0 +1,5 @@
+requests
+isodate
+matplotlib
+numpy
+jupyter

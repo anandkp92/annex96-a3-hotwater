@@ -1,0 +1,30 @@
+{
+  "eventName": "etou-dyn-2026-02-17",
+  "programID": "PROGRAM_ID_PLACEHOLDER",
+  "intervalPeriod": {
+    "start": "2026-02-17T19:00:00Z",
+    "duration": "PT1H"
+  },
+  "payloadDescriptors": [
+    {
+      "payloadType": "PRICE",
+      "units": "KWH",
+      "currency": "USD"
+    }
+  ],
+  "intervals": [
+    { "id": 0, "payloads": [{ "type": "PRICE", "values": [0.12097] }] },
+    { "id": 1, "payloads": [{ "type": "PRICE", "values": [0.12089] }] },
+    { "id": 2, "payloads": [{ "type": "PRICE", "values": [0.11814] }] },
+    { "id": 3, "payloads": [{ "type": "PRICE", "values": [0.11852] }] },
+    { "id": 4, "payloads": [{ "type": "PRICE", "values": [0.11769] }] },
+    { "id": 5, "payloads": [{ "type": "PRICE", "values": [0.12052] }] },
+    { "id": 6, "payloads": [{ "type": "PRICE", "values": [0.12227] }] },
+    { "id": 7, "payloads": [{ "type": "PRICE", "values": [0.12213] }] },
+    { "id": 8, "payloads": [{ "type": "PRICE", "values": [0.12132] }] },
+    { "id": 9, "payloads": [{ "type": "PRICE", "values": [0.12127] }] },
+    { "id": 10, "payloads": [{ "type": "PRICE", "values": [0.12046] }] },
+    { "id": 11, "payloads": [{ "type": "PRICE", "values": [0.11859] }] },
+    { "id": 12, "payloads": [{ "type": "PRICE", "values": [0.11692] }] }
+  ]
+}
