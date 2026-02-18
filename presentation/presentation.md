@@ -70,7 +70,7 @@ anandkrp@andrew.cmu.edu
 
 # Outline
 
-![logo](images/cmu.png)
+
 
 1. **Introduction** — Motivation and goals
 2. **Background** — OpenADR 3.0, demand flexibility, HPWHs
@@ -91,7 +91,7 @@ anandkrp@andrew.cmu.edu
 
 # Why Demand Flexibility?
 
-![logo](images/cmu.png)
+
 
 - Grid decarbonization requires flexible loads that can **shift consumption**
 - Water heating accounts for **~18% of residential energy use** in the US
@@ -104,7 +104,7 @@ anandkrp@andrew.cmu.edu
 
 # Project Goals
 
-![logo](images/cmu.png)
+
 
 Develop an **open-source software toolkit** so that researchers and practitioners can:
 
@@ -128,7 +128,7 @@ Develop an **open-source software toolkit** so that researchers and practitioner
 
 # OpenADR 3.0
 
-![logo](images/cmu.png)
+
 
 **Open Automated Demand Response** — an open standard for communicating DR signals.
 
@@ -146,7 +146,7 @@ REST API (JSON over HTTP) with OAuth 2.0 authentication
 
 # Heat Pump Water Heaters as Flexible Loads
 
-![logo](images/cmu.png)
+
 
 **How HPWHs provide flexibility:**
 - Tank stores thermal energy (50–80 gal)
@@ -165,7 +165,7 @@ REST API (JSON over HTTP) with OAuth 2.0 authentication
 
 # CTA-2045 and Device Communication
 
-![logo](images/cmu.png)
+
 
 **CTA-2045** is a modular communications interface for energy devices, providing standardized demand response commands for water heaters:
 
@@ -190,7 +190,7 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 # Price-Responsive HPWH Control Through OpenADR
 
-![logo](images/cmu.png)
+
 
 **Scenario:** A utility publishes dynamic electricity prices. A water heater controller receives these prices and optimizes its operation schedule.
 
@@ -200,7 +200,7 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 # Example: 24-Hour Price Signal and Response
 
-![logo](images/cmu.png)
+
 
 ![w:820](images/price-response.svg)
 
@@ -218,7 +218,7 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 # System Architecture
 
-![logo](images/cmu.png)
+
 
 ![w:850](images/system-architecture.svg)
 
@@ -226,7 +226,7 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 # Repository Structure
 
-![logo](images/cmu.png)
+
 
 ```
 annex96-a3-hotwater/
@@ -247,7 +247,7 @@ annex96-a3-hotwater/
 
 # Two VTN Options
 
-![logo](images/cmu.png)
+
 
 | | Python VTN Ref. Impl. | openleadr-rs (Rust) |
 |---|---|---|
@@ -270,7 +270,7 @@ annex96-a3-hotwater/
 
 # Easy Shift Algorithm
 
-![logo](images/cmu.png)
+
 
 **EASY-SHIFT** — Equipment Scheduling Algorithm for Thermal Energy Storage with Load Shifting
 *B. Woo-Shem and P. Grant, LBNL*
@@ -283,7 +283,7 @@ annex96-a3-hotwater/
 
 # Easy Shift: Key Constraints
 
-![logo](images/cmu.png)
+
 
 ### Storage Capacity
 - Tank has maximum thermal storage (e.g., 12 kWh)
@@ -301,7 +301,7 @@ annex96-a3-hotwater/
 
 # CTA-2045 Schedule Generation
 
-![logo](images/cmu.png)
+
 
 ![w:850](images/cta2045-pipeline.svg)
 
@@ -311,7 +311,7 @@ annex96-a3-hotwater/
 
 # Quickstart Demo Pipeline
 
-![logo](images/cmu.png)
+
 
 ```python
 # Step 1: Authenticate with VTN
@@ -338,7 +338,7 @@ cta_schedule = easy_shift_to_cta2045(operation, parameters)
 
 # Example Output
 
-![logo](images/cmu.png)
+
 
 ```
 Hourly schedule (kWh):
@@ -368,7 +368,7 @@ Shifts operation to cheapest hours (19–23) and generates CTA-2045 commands.
 
 # Quick Setup
 
-![logo](images/cmu.png)
+
 
 ### 1. Clone and install
 
@@ -393,7 +393,7 @@ pip install -r requirements.txt && python -m swagger_server
 
 # Run the Quickstart
 
-![logo](images/cmu.png)
+
 
 ### 3. Launch the notebook
 
@@ -416,7 +416,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 
 # Extending the Software
 
-![logo](images/cmu.png)
+
 
 - **Customize HPWH parameters** — Edit Step 6: tank size, HP capacity, COP, draw profile
 
@@ -432,7 +432,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 
 # Resources and References
 
-![logo](images/cmu.png)
+
 
 - **Repository:** `annex96-a3-hotwater/`
 - **OpenADR 3.0.1 Spec:** included in repo, or [openadr.org](https://www.openadr.org/)
@@ -455,6 +455,6 @@ anandkrp@andrew.cmu.edu
 IEA EBC Annex 96 — Activity A3
 Carnegie Mellon University
 
-![logo](images/cmu.png)
+
 
 *All source code and documentation available in the `annex96-a3-hotwater` repository*
