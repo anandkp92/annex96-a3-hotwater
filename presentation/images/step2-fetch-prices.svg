@@ -6,8 +6,8 @@
   <rect x="0" y="0" width="5" height="340" fill="#e67e22"/>
   <circle cx="33" cy="29" r="18" fill="#e67e22"/>
   <text x="33" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="white">2</text>
-  <text x="62" y="23" font-size="17" font-weight="bold" fill="#7d6608">Fetch Live Prices</text>
-  <text x="62" y="44" font-size="12" fill="#5d6d7e">Pull hourly electricity prices from a pricing API or other data source</text>
+  <text x="62" y="23" font-size="17" font-weight="bold" fill="#7d6608">Fetch Dynamic Prices from Olivine</text>
+  <text x="62" y="44" font-size="12" fill="#5d6d7e">Fetch eTOU-Dyn dynamic electricity prices from the Olivine API</text>
 
   <!-- Column boxes -->
   <rect x="10"  y="64" width="261" height="182" rx="8" fill="#fffaf3" stroke="#f5d5a0" stroke-width="1"/>

@@ -366,7 +366,7 @@ Each step — inputs, what it does, outputs, and what to change for your impleme
 
 ---
 
-# Step 2: Fetch Live Prices
+# Step 2: Fetch Dynamic Prices from Olivine
 
 ![w:820](images/step2-fetch-prices.svg)
 
@@ -450,7 +450,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 
 | Step | Action |
 |---|---|
-| 1–2 | Connect to VTN, fetch live prices from Olivine API |
+| 1–2 | Connect to VTN, fetch dynamic prices from Olivine API |
 | 3–4 | Create pricing program, publish hourly price event |
 | 5 | Read events as a VEN |
 | 6 | Run LP Scheduler and plot optimal schedule |
