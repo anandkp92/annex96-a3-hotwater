@@ -15,12 +15,13 @@
   <!-- Arrow 1 -->
   <line x1="230" y1="90" x2="290" y2="90" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#ar)"/>
 
-  <!-- Easy Shift -->
+  <!-- LP Scheduler -->
   <rect x="300" y="30" width="210" height="120" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
-  <text x="405" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">Easy Shift</text>
-  <text x="405" y="85" text-anchor="middle" font-size="12" fill="#5d6d7e">HP output kWh/hr</text>
-  <rect x="325" y="100" width="160" height="35" rx="5" fill="#d5f5e3" stroke="#82e0aa" stroke-width="1"/>
-  <text x="405" y="122" text-anchor="middle" font-size="11" fill="#1e8449" font-family="monospace">[0, 4.5, 4.5, 0, ...]</text>
+  <text x="405" y="56" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">LP Scheduler</text>
+  <text x="405" y="74" text-anchor="middle" font-size="11" fill="#5d6d7e">(hpwh_load_shift_lp)</text>
+  <text x="405" y="92" text-anchor="middle" font-size="12" fill="#5d6d7e">HP output kWh/hr</text>
+  <rect x="325" y="103" width="160" height="35" rx="5" fill="#d5f5e3" stroke="#82e0aa" stroke-width="1"/>
+  <text x="405" y="125" text-anchor="middle" font-size="11" fill="#1e8449" font-family="monospace">[0, 4.5, 4.5, 0, ...]</text>
 
   <!-- Arrow 2 -->
   <line x1="510" y1="90" x2="570" y2="90" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#ar)"/>
@@ -46,5 +47,5 @@
   <text x="735" y="128" text-anchor="middle" font-size="11" fill="#7d6608" font-family="monospace">[-1, 2, 2, -1, 1, 0, ...]</text>
 
   <!-- Bottom label -->
-  <text x="450" y="190" text-anchor="middle" font-size="13" fill="#8e44ad" font-weight="bold">Full pipeline: prices → optimal schedule → device commands</text>
+  <text x="450" y="190" text-anchor="middle" font-size="13" fill="#8e44ad" font-weight="bold">Full pipeline: OpenADR price signal → LP-optimal schedule → CTA-2045 commands</text>
 </svg>

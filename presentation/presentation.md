@@ -76,7 +76,7 @@ anandkrp@andrew.cmu.edu
 2. **Background** — OpenADR 3.0, demand flexibility, HPWHs
 3. **Use Case** — Price-responsive HPWH control through OpenADR
 4. **Software Architecture** — Components and data flow
-5. **Implementation** — Easy Shift algorithm and CTA-2045 integration
+5. **Implementation** — LP/heuristic schedulers and CTA-2045 integration
 6. **How to Use** — Setup, run, and extend
 
 ---
@@ -230,17 +230,18 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 ```
 annex96-a3-hotwater/
-├── README.md                         # Project overview
-├── requirements.txt                  # Python dependencies
-├── instructions.ipynb                # Setup: Python VTN
-├── instructions-openleadr.ipynb      # Setup: openleadr-rs VTN
-├── quickstart.ipynb                  # Demo: Python VTN
-├── quickstart-openleadr.ipynb        # Demo: openleadr-rs VTN
-├── controls/                         # Control algorithms
-│   ├── easy_shift_public.py          # Easy Shift scheduling (independent implementation)
-│   └── cta2045.py                    # CTA-2045 schedule generation
-├── sample_data/                      # Example JSON payloads
-└── presentation/                     # This presentation
+├── README.md                             # Project overview
+├── requirements.txt                      # Python dependencies
+├── instructions.ipynb                    # Setup: Python VTN
+├── instructions-openleadr.ipynb          # Setup: openleadr-rs VTN
+├── quickstart.ipynb                      # Demo: Python VTN
+├── quickstart-openleadr.ipynb            # Demo: openleadr-rs VTN
+├── controls/                             # Control algorithms
+│   ├── hpwh_load_shift_lp.py             # LP scheduler (globally optimal)
+│   ├── hpwh_load_shift_heuristic.py      # Heuristic scheduler (greedy)
+│   └── cta2045.py                        # CTA-2045 schedule generation
+├── sample_data/                          # Example JSON payloads
+└── presentation/                         # This presentation
 ```
 
 ---
@@ -268,36 +269,22 @@ annex96-a3-hotwater/
 
 ---
 
-# Easy Shift Algorithm
+# HPWH Load Shift Scheduler
 
 
 
-**EASY-SHIFT** — Equipment Scheduling Algorithm for Thermal Energy Storage with Load Shifting
-*B. Woo-Shem and P. Grant, LBNL*
+Two interchangeable implementations in `controls/`:
 
-**Core idea:** Rank hours by electricity cost and iteratively assign HP operation to the cheapest available hours while respecting storage constraints.
+| | **LP Scheduler** (`hpwh_load_shift_lp`) | **Heuristic** (`hpwh_load_shift_heuristic`) |
+|---|---|---|
+| **Method** | Linear program (HiGHS via scipy) | Bottom-up greedy |
+| **Solution** | Globally optimal | Near-optimal |
+| **Speed** | Fast (milliseconds) | O(N²) worst case |
+| **Dep.** | scipy | numpy only |
 
-> Implementation in `easy_shift_public.py` is written independently from the public algorithm description.
+**LP formulation:** min Σ e[h]·price[h]/COP[h] subject to storage bounds and HP capacity bounds.
 
-![w:750](images/easy-shift-steps.svg)
-
----
-
-# Easy Shift: Key Constraints
-
-
-
-### Storage Capacity
-- Tank has maximum thermal storage (e.g., 12 kWh)
-- If running at full power would exceed max storage → reduce output
-- Maintains a minimum reserve for unexpected demand
-
-### Cheaper Hours Optimization
-- After satisfying the current hour, check: is there a cheaper hour ahead?
-- If yes, reduce current output to save capacity for the cheaper hour
-
-### Convergence
-- Returns `converged = True/False` as a flag to trigger fallback strategies
+![w:820](images/lp-scheduler-steps.svg)
 
 ---
 
@@ -307,7 +294,7 @@ annex96-a3-hotwater/
 
 ![w:850](images/cta2045-pipeline.svg)
 
-> Two approaches available: from Easy Shift output (uses HP output levels), or directly from prices (uses percentile thresholds).
+> Two approaches: from LP/heuristic scheduler output (uses HP output levels), or directly from prices (uses percentile thresholds).
 
 ---
 
@@ -331,9 +318,9 @@ requests.post(f"{VTN}/events", json=event_data, headers=auth)
 # Step 5: Read events as VEN
 events = requests.get(f"{VTN}/events", headers=ven_auth).json()
 
-# Step 6: Run Easy Shift → Step 7: Generate CTA-2045 schedule
-operation, converged = easy_shift(parameters)
-cta_schedule = easy_shift_to_cta2045(operation, parameters)
+# Step 6: Run LP Scheduler → Step 7: Generate CTA-2045 schedule
+schedule, converged = hpwh_load_shift(params)
+cta_schedule = hpwh_load_shift_to_cta2045(schedule, params)
 ```
 
 ---
@@ -343,20 +330,75 @@ cta_schedule = easy_shift_to_cta2045(operation, parameters)
 
 
 ```
+LP status: Optimization terminated successfully (HiGHS Status 7: Optimal)
+
 Hourly schedule (kWh):
   Hour  0: OFF   0.00 kWh  @ $0.12052/kWh   →  Shed
   Hour  1: OFF   0.00 kWh  @ $0.12227/kWh   →  Shed
-  Hour  2: OFF   0.00 kWh  @ $0.12213/kWh   →  Shed
-  Hour  3:  ON   1.50 kWh  @ $0.12132/kWh   →  Normal
   ...
-  Hour 19:  ON   4.50 kWh  @ $0.10689/kWh   →  Advanced Load Up
-  Hour 20:  ON   4.50 kWh  @ $0.10519/kWh   →  Advanced Load Up
-  Hour 21:  ON   4.50 kWh  @ $0.10300/kWh   →  Advanced Load Up
+  Hour 18:  ON   1.50 kWh  @ $0.11120/kWh   →  Normal
+  Hour 19:  ON   1.50 kWh  @ $0.10689/kWh   →  Normal
+  Hour 20:  ON   1.50 kWh  @ $0.10519/kWh   →  Normal
+  Hour 21:  ON   1.50 kWh  @ $0.10300/kWh   →  Normal
+  Hour 22:  ON   1.50 kWh  @ $0.10620/kWh   →  Normal
+  Hour 23:  ON   1.50 kWh  @ $0.10930/kWh   →  Normal
 
-Total electricity cost: $0.62145
+Total electricity cost: $0.28741
 ```
 
-Shifts operation to cheapest hours (19–23) and generates CTA-2045 commands.
+LP finds the globally optimal allocation — charges exactly what is needed at the cheapest hours.
+
+---
+
+<!-- _class: lead -->
+<!-- _backgroundColor: #1a5276 -->
+<!-- _color: #fff -->
+
+# Quickstart: Step by Step
+
+Each step — inputs, what it does, outputs, and what to change for your implementation
+
+---
+
+# Step 1: Setup & Verify VTN Connection
+
+![w:820](images/step1-auth.svg)
+
+---
+
+# Step 2: Fetch Live Prices
+
+![w:820](images/step2-fetch-prices.svg)
+
+---
+
+# Step 3: Create Pricing Program on VTN
+
+![w:820](images/step3-create-program.svg)
+
+---
+
+# Step 4: Publish Price Signal as an Event
+
+![w:820](images/step4-publish-event.svg)
+
+---
+
+# Step 5: Read Events as a VEN
+
+![w:820](images/step5-read-ven.svg)
+
+---
+
+# Step 6: Run LP Scheduler
+
+![w:820](images/step6-lp-scheduler.svg)
+
+---
+
+# Step 7: Generate CTA-2045 Schedule
+
+![w:820](images/step7-cta2045.svg)
 
 ---
 
@@ -411,7 +453,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 | 1–2 | Connect to VTN, fetch live prices from Olivine API |
 | 3–4 | Create pricing program, publish hourly price event |
 | 5 | Read events as a VEN |
-| 6 | Run Easy Shift and plot optimal schedule |
+| 6 | Run LP Scheduler and plot optimal schedule |
 | 7 | Generate CTA-2045 command schedule |
 
 ---
@@ -424,7 +466,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 
 - **Use your own price data** — Replace Olivine API with your own source
 
-- **Add new control algorithms** — Create a new file in `controls/`
+- **Swap the scheduler** — `hpwh_load_shift_lp` (optimal) ↔ `hpwh_load_shift_heuristic` (no scipy needed)
 
 - **Integrate with CTA-2045 hardware** — Connect generated schedules to physical devices
 
@@ -440,7 +482,7 @@ jupyter notebook quickstart-openleadr.ipynb  # for openleadr-rs
 - **OpenADR 3.0.1 Spec:** included in repo, or [openadr.org](https://www.openadr.org/)
 - **openleadr-rs:** [github.com/OpenLEADR/openleadr-rs](https://github.com/OpenLEADR/openleadr-rs)
 - **Olivine API:** `api.olivineinc.com/i/oe/pricing/signal/paced/etou-dyn`
-- **Easy Shift:** B. Woo-Shem and P. Grant, "EASY-SHIFT: Equipment Scheduling Algorithm for Thermal Energy Storage with Load Shifting," LBNL. [Presentation](https://drive.google.com/file/d/1ustmh-rE7693udh-mc096bhgSyDrT89D/view)
+- **scipy linprog / HiGHS:** [scipy.org](https://scipy.org) — LP solver used by the scheduler
 
 ---
 

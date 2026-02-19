@@ -1,6 +1,6 @@
 # OpenADR 3 Demand Flexibility for Hot Water Heaters
 
-Demonstrates how to use OpenADR 3.0 to communicate demand flexibility signals for heat pump water heaters (HPWHs). The system fetches electricity pricing data, publishes it through an OpenADR 3 VTN, and uses the Easy Shift algorithm to generate optimal heat pump operation schedules.
+Demonstrates how to use OpenADR 3.0 to communicate demand flexibility signals for heat pump water heaters (HPWHs). The system fetches electricity pricing data, publishes it through an OpenADR 3 VTN, and uses an LP-based scheduler to generate globally optimal heat pump operation schedules.
 
 ## Folder Structure
 
@@ -12,7 +12,7 @@ annex96-a3-hotwater/
 ├── instructions-openleadr.ipynb     # Setup guide using the Rust-based openleadr-rs VTN
 ├── quickstart.ipynb                 # Interactive demo (Python VTN)
 ├── quickstart-openleadr.ipynb       # Interactive demo (openleadr-rs VTN)
-├── controls/                        # Easy Shift algorithm and CTA-2045 schedule generation
+├── controls/                        # HPWH load-shift schedulers and CTA-2045 generation
 ├── sample_data/                     # Pre-built OpenADR 3 JSON payloads
 ├── presentation/                    # Marp presentation slides and SVG diagrams
 └── OpenADR 3.0 Specification_3.0.1/ # OpenADR 3.0.1 spec (YAML, PDFs)
@@ -53,12 +53,14 @@ Uses the open-source Rust-based OpenADR 3.0 implementation. Requires Docker (for
 |---|---|
 | `instructions.ipynb` | Prerequisites, setup, and component docs for the Python VTN reference implementation |
 | `instructions-openleadr.ipynb` | Same for the Rust-based openleadr-rs VTN (requires Docker for PostgreSQL) |
-| `quickstart.ipynb` | End-to-end Python notebook: fetch prices, publish to VTN, read as VEN, run Easy Shift |
+| `quickstart.ipynb` | End-to-end Python notebook: fetch prices, publish to VTN, read as VEN, run LP scheduler |
 | `quickstart-openleadr.ipynb` | Same workflow using the openleadr-rs VTN |
-| `controls/` | Easy Shift algorithm and CTA-2045 schedule generation |
+| `controls/` | LP and heuristic HPWH schedulers, CTA-2045 schedule generation |
 | `sample_data/` | Example OpenADR 3 program and event JSON files |
 | `OpenADR 3.0 Specification_3.0.1/` | Normative YAML spec and reference PDFs (download from [OpenADR Alliance](https://www.openadr.org/)) |
 
 ## References
 
-- B. Woo-Shem and P. Grant, "EASY-SHIFT: Equipment Scheduling Algorithm for Thermal Energy Storage with Load Shifting," Lawrence Berkeley National Laboratory (LBNL). [Presentation](https://drive.google.com/file/d/1ustmh-rE7693udh-mc096bhgSyDrT89D/view)
+- OpenADR Alliance, "OpenADR 3.0.1 Specification," [openadr.org](https://www.openadr.org/)
+- OpenLEADR, "openleadr-rs," [github.com/OpenLEADR/openleadr-rs](https://github.com/OpenLEADR/openleadr-rs)
+- scipy, "scipy.optimize.linprog / HiGHS," [scipy.org](https://scipy.org)

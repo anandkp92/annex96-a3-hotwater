@@ -32,6 +32,70 @@ SIGNAL_NAMES = {
 }
 
 
+def hpwh_load_shift_to_cta2045(schedule, params):
+    """
+    Convert hpwh_load_shift output to a CTA-2045 command schedule.
+
+    Mapping logic (output fraction relative to max_input):
+        - output = 0           → Shed
+        - output < 30% of max  → Normal
+        - output 30–80% of max → Load Up
+        - output ≥ 80% of max  → Advanced Load Up
+
+    Parameters
+    ----------
+    schedule : dict
+        Output from hpwh_load_shift(). Must contain 'control' and 'cost'.
+    params : dict
+        The params dict passed to hpwh_load_shift(). Must contain
+        'n', 'max_input', and 'price'.
+
+    Returns
+    -------
+    schedule_out : dict
+        CTA-2045 schedule with keys:
+        - signals : list[int] — CTA-2045 command per hour (-1, 0, 1, 2)
+        - signal_names : list[str] — Human-readable command names
+        - hours : list[int] — Hour indices
+        - hp_output_kWh : list[float] — HP thermal output from scheduler
+        - prices : list[float] — Electricity prices ($/kWh)
+        - costs : list[float] — Electricity cost at each hour
+    """
+    N = params['n']
+    control = schedule['control']
+    max_input = params['max_input']
+    prices = params['price']
+
+    # Normalise scalar max_input to list.
+    if not hasattr(max_input, '__getitem__'):
+        max_input = [float(max_input)] * N
+
+    signals = []
+    for hour in range(N):
+        max_out = max_input[hour]
+        output = control[hour]
+
+        if max_out == 0:
+            signals.append(NORMAL)
+        elif output == 0:
+            signals.append(SHED)
+        elif output / max_out < 0.3:
+            signals.append(NORMAL)
+        elif output / max_out < 0.8:
+            signals.append(LOAD_UP)
+        else:
+            signals.append(ADVANCED_LOAD_UP)
+
+    return {
+        'signals':      signals,
+        'signal_names': [SIGNAL_NAMES[s] for s in signals],
+        'hours':        list(range(N)),
+        'hp_output_kWh': list(control),
+        'prices':       list(prices),
+        'costs':        list(schedule['cost']),
+    }
+
+
 def easy_shift_to_cta2045(operation, parameters):
     """
     Convert Easy Shift output to a CTA-2045 command schedule.

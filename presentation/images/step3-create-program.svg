@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340"
+     font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="860" height="58" fill="#f5eef8"/>
+  <rect x="0" y="0" width="5" height="340" fill="#8e44ad"/>
+  <circle cx="33" cy="29" r="18" fill="#8e44ad"/>
+  <text x="33" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="white">3</text>
+  <text x="62" y="23" font-size="17" font-weight="bold" fill="#6c3483">Create Pricing Program on VTN</text>
+  <text x="62" y="44" font-size="12" fill="#5d6d7e">Register a program definition that groups related price events on the VTN</text>
+
+  <!-- Column boxes -->
+  <rect x="10"  y="64" width="261" height="182" rx="8" fill="#faf5fc" stroke="#d7bde2" stroke-width="1"/>
+  <rect x="281" y="64" width="297" height="182" rx="8" fill="#f4e6f7" stroke="#8e44ad" stroke-width="1.5"/>
+  <rect x="588" y="64" width="261" height="182" rx="8" fill="#f0fcf5" stroke="#abebc6" stroke-width="1"/>
+
+  <!-- Column labels -->
+  <text x="140" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9"  letter-spacing="1.5">INPUTS</text>
+  <text x="429" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#6c3483"  letter-spacing="1.5">WHAT IT DOES</text>
+  <text x="718" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449"  letter-spacing="1.5">OUTPUTS</text>
+
+  <!-- Inputs -->
+  <text x="20" y="99"  font-size="11" font-weight="bold" fill="#2471a3">● OAuth token (Step 1)</text>
+  <text x="28" y="113" font-size="10" fill="#5d6d7e">via bl_headers()</text>
+  <text x="20" y="130" font-size="11" font-weight="bold" fill="#2471a3">● programName</text>
+  <text x="28" y="144" font-size="10" fill="#5d6d7e">"etou-dynamic-pricing"</text>
+  <text x="20" y="161" font-size="11" font-weight="bold" fill="#2471a3">● payloadDescriptors</text>
+  <text x="28" y="175" font-size="10" fill="#5d6d7e">[{payloadType: PRICE, units: KWH}]</text>
+
+  <!-- Action -->
+  <rect x="292" y="86" width="274" height="28" rx="6" fill="#8e44ad" opacity="0.18"/>
+  <text x="429" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#6c3483">POST /programs</text>
+  <text x="429" y="121" text-anchor="middle" font-size="11" fill="#5d6d7e">Register program definition on VTN</text>
+  <text x="429" y="137" text-anchor="middle" font-size="11" fill="#5d6d7e">VTN assigns a unique program_id</text>
+  <line x1="320" y1="149" x2="538" y2="149" stroke="#d7bde2" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="429" y="164" text-anchor="middle" font-size="11" fill="#5d6d7e">program_id links all future events</text>
+  <text x="429" y="180" text-anchor="middle" font-size="11" fill="#5d6d7e">to this program (Step 4)</text>
+  <text x="429" y="197" text-anchor="middle" font-size="11" fill="#5d6d7e">VENs can filter events by program_id</text>
+  <text x="429" y="213" text-anchor="middle" font-size="11" fill="#5d6d7e">to subscribe to specific tariffs</text>
+
+  <!-- Outputs -->
+  <text x="598" y="99"  font-size="11" font-weight="bold" fill="#1e8449">● program_id</text>
+  <text x="606" y="113" font-size="10" fill="#5d6d7e">"0" (Python VTN) or</text>
+  <text x="606" y="127" font-size="10" fill="#5d6d7e">UUID (openleadr-rs)</text>
+  <text x="598" y="148" font-size="11" font-weight="bold" fill="#1e8449">● Stored program record</text>
+  <text x="606" y="162" font-size="10" fill="#5d6d7e">persists on VTN until deleted</text>
+  <text x="598" y="183" font-size="11" font-weight="bold" fill="#1e8449">● Confirmed HTTP 201</text>
+  <text x="606" y="197" font-size="10" fill="#5d6d7e">creation verified via raise_for_status()</text>
+
+  <!-- Customize footer -->
+  <rect x="0" y="252" width="860" height="88" fill="#f8f9fa"/>
+  <line x1="5" y1="252" x2="860" y2="252" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="14" y="268" font-size="10" font-weight="bold" fill="#7f8c8d" letter-spacing="1.5">CUSTOMIZE</text>
+  <text x="14" y="283" font-size="11" fill="#5d6d7e">→ programName: any descriptive string matching your tariff (e.g. "eTOU-Dynamic", "real-time-pricing")</text>
+  <text x="14" y="298" font-size="11" fill="#5d6d7e">→ Payload type: PRICE (absolute $/kWh) or PRICE_RELATIVE (delta from a baseline price)</text>
+  <text x="14" y="313" font-size="11" fill="#5d6d7e">→ openleadr-rs extras: add programType, retailerName, country, principalSubdivision fields</text>
+  <text x="14" y="328" font-size="11" fill="#5d6d7e">→ Reuse: query GET /programs first and skip creation if a matching program already exists</text>
+</svg>

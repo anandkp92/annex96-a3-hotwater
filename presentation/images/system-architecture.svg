@@ -35,7 +35,7 @@
   <text x="770" y="75" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e8449">VEN + Controls</text>
   <text x="770" y="100" text-anchor="middle" font-size="13" fill="#1e8449">This Toolkit</text>
   <line x1="690" y1="115" x2="850" y2="115" stroke="#d5f5e3" stroke-width="1"/>
-  <text x="770" y="137" text-anchor="middle" font-size="12" fill="#5d6d7e">Easy Shift algo</text>
+  <text x="770" y="137" text-anchor="middle" font-size="12" fill="#5d6d7e">LP Scheduler</text>
   <text x="770" y="155" text-anchor="middle" font-size="12" fill="#5d6d7e">→ CTA-2045 schedule</text>
 
   <!-- VTN Options Box -->

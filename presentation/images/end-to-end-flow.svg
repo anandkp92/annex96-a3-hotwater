@@ -27,7 +27,7 @@
 
   <!-- Step 3 -->
   <rect x="470" y="40" width="170" height="100" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
-  <text x="555" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">3. Easy Shift</text>
+  <text x="555" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">3. LP Scheduler</text>
   <text x="555" y="92" text-anchor="middle" font-size="11" fill="#5d6d7e">Computes optimal</text>
   <text x="555" y="108" text-anchor="middle" font-size="11" fill="#5d6d7e">heat pump</text>
   <text x="555" y="124" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">schedule</text>
@@ -43,5 +43,5 @@
   <text x="790" y="124" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">pre-heats cheap hrs</text>
 
   <!-- Bottom label -->
-  <text x="450" y="180" text-anchor="middle" font-size="12" fill="#95a5a6">OpenADR 3.0 Price Signal → Easy Shift Algorithm → CTA-2045 Commands → Device Action</text>
+  <text x="450" y="180" text-anchor="middle" font-size="12" fill="#95a5a6">OpenADR 3.0 Price Signal → LP Scheduler → CTA-2045 Commands → Device Action</text>
 </svg>

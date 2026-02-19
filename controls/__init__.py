@@ -1,5 +1,6 @@
-from .easy_shift_public import easy_shift, get_storage, iteration_plot
+from .hpwh_load_shift_lp import hpwh_load_shift, simulate_soc, get_storage, iteration_plot
 from .cta2045 import (
+    hpwh_load_shift_to_cta2045,
     easy_shift_to_cta2045,
     prices_to_cta2045,
     format_schedule,

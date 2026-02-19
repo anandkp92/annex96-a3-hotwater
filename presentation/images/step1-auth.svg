@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340"
+     font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="860" height="58" fill="#ebf5fb"/>
+  <rect x="0" y="0" width="5" height="340" fill="#3498db"/>
+  <circle cx="33" cy="29" r="18" fill="#3498db"/>
+  <text x="33" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="white">1</text>
+  <text x="62" y="23" font-size="17" font-weight="bold" fill="#1a5276">Setup &amp; Verify VTN Connection</text>
+  <text x="62" y="44" font-size="12" fill="#5d6d7e">Exchange credentials for an OAuth token; confirm the VTN is reachable</text>
+
+  <!-- Column boxes -->
+  <rect x="10"  y="64" width="261" height="182" rx="8" fill="#f4f9fd" stroke="#aed6f1" stroke-width="1"/>
+  <rect x="281" y="64" width="297" height="182" rx="8" fill="#eaf4fb" stroke="#3498db" stroke-width="1.5"/>
+  <rect x="588" y="64" width="261" height="182" rx="8" fill="#f0fcf5" stroke="#abebc6" stroke-width="1"/>
+
+  <!-- Column labels -->
+  <text x="140" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9"  letter-spacing="1.5">INPUTS</text>
+  <text x="429" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1a5276"  letter-spacing="1.5">WHAT IT DOES</text>
+  <text x="718" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449"  letter-spacing="1.5">OUTPUTS</text>
+
+  <!-- Inputs -->
+  <text x="20" y="99"  font-size="11" font-weight="bold" fill="#2471a3">● VTN_BASE_URL</text>
+  <text x="28" y="113" font-size="10" fill="#5d6d7e">localhost:8080/openadr3/3.0.1</text>
+  <text x="20" y="130" font-size="11" font-weight="bold" fill="#2471a3">● BL_CLIENT_ID / SECRET</text>
+  <text x="28" y="144" font-size="10" fill="#5d6d7e">Business Logic credentials</text>
+  <text x="20" y="161" font-size="11" font-weight="bold" fill="#2471a3">● VEN_CLIENT_ID / SECRET</text>
+  <text x="28" y="175" font-size="10" fill="#5d6d7e">VEN read-only credentials</text>
+
+  <!-- Action -->
+  <rect x="292" y="86" width="274" height="28" rx="6" fill="#3498db" opacity="0.18"/>
+  <text x="429" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a5276">POST /auth/token</text>
+  <text x="429" y="121" text-anchor="middle" font-size="11" fill="#5d6d7e">grant_type: client_credentials</text>
+  <text x="429" y="136" text-anchor="middle" font-size="11" fill="#5d6d7e">→ returns JWT Bearer token</text>
+  <line x1="330" y1="148" x2="528" y2="148" stroke="#aed6f1" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="292" y="156" width="274" height="28" rx="6" fill="#3498db" opacity="0.18"/>
+  <text x="429" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a5276">GET /programs</text>
+  <text x="429" y="191" text-anchor="middle" font-size="11" fill="#5d6d7e">Confirm VTN returns HTTP 200</text>
+  <text x="429" y="207" text-anchor="middle" font-size="11" fill="#5d6d7e">(raises exception if offline)</text>
+
+  <!-- Outputs -->
+  <text x="598" y="99"  font-size="11" font-weight="bold" fill="#1e8449">● access_token</text>
+  <text x="606" y="113" font-size="10" fill="#5d6d7e">Bearer JWT for API headers</text>
+  <text x="598" y="130" font-size="11" font-weight="bold" fill="#1e8449">● bl_headers() helper</text>
+  <text x="606" y="144" font-size="10" fill="#5d6d7e">Authorization header for BL calls</text>
+  <text x="598" y="161" font-size="11" font-weight="bold" fill="#1e8449">● ven_headers() helper</text>
+  <text x="606" y="175" font-size="10" fill="#5d6d7e">Authorization header for VEN calls</text>
+  <text x="598" y="192" font-size="11" font-weight="bold" fill="#1e8449">● Confirmed VTN is live</text>
+  <text x="606" y="206" font-size="10" fill="#5d6d7e">exception raised if not running</text>
+
+  <!-- Customize footer -->
+  <rect x="0" y="252" width="860" height="88" fill="#f8f9fa"/>
+  <line x1="5" y1="252" x2="860" y2="252" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="14" y="268" font-size="10" font-weight="bold" fill="#7f8c8d" letter-spacing="1.5">CUSTOMIZE</text>
+  <text x="14" y="283" font-size="11" fill="#5d6d7e">→ VTN implementation: change VTN_BASE_URL to localhost:3000 (no path prefix) for openleadr-rs</text>
+  <text x="14" y="298" font-size="11" fill="#5d6d7e">→ Credentials: update CLIENT_ID / SECRET to match your VTN's user fixture (see instructions.ipynb)</text>
+  <text x="14" y="313" font-size="11" fill="#5d6d7e">→ Token caching: get_token() is called per request; cache the token for higher-throughput use</text>
+  <text x="14" y="328" font-size="11" fill="#5d6d7e">→ TLS: replace http:// with https:// and pass verify= cert path for non-local deployments</text>
+</svg>

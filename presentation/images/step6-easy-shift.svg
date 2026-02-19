@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340"
+     font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="860" height="58" fill="#eafaf1"/>
+  <rect x="0" y="0" width="5" height="340" fill="#27ae60"/>
+  <circle cx="33" cy="29" r="18" fill="#27ae60"/>
+  <text x="33" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="white">6</text>
+  <text x="62" y="23" font-size="17" font-weight="bold" fill="#1e8449">Run Easy Shift Control Algorithm</text>
+  <text x="62" y="44" font-size="12" fill="#5d6d7e">Compute a near-optimal HP schedule that minimises cost while meeting load</text>
+
+  <!-- Column boxes -->
+  <rect x="10"  y="64" width="261" height="182" rx="8" fill="#f2fdf6" stroke="#a9dfbf" stroke-width="1"/>
+  <rect x="281" y="64" width="297" height="182" rx="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+  <rect x="588" y="64" width="261" height="182" rx="8" fill="#f0fcf5" stroke="#abebc6" stroke-width="1"/>
+
+  <!-- Column labels -->
+  <text x="140" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9"  letter-spacing="1.5">INPUTS</text>
+  <text x="429" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449"  letter-spacing="1.5">WHAT IT DOES</text>
+  <text x="718" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449"  letter-spacing="1.5">OUTPUTS</text>
+
+  <!-- Inputs -->
+  <text x="20" y="99"  font-size="11" font-weight="bold" fill="#2471a3">● prices [$/kWh] × N hrs</text>
+  <text x="28" y="113" font-size="10" fill="#5d6d7e">from Step 5 — elec_costs</text>
+  <text x="20" y="130" font-size="11" font-weight="bold" fill="#2471a3">● max_hp_output [kWh]</text>
+  <text x="28" y="144" font-size="10" fill="#5d6d7e">HP thermal capacity</text>
+  <text x="20" y="161" font-size="11" font-weight="bold" fill="#2471a3">● max/min_storage, initial_soc</text>
+  <text x="28" y="175" font-size="10" fill="#5d6d7e">tank bounds + starting charge</text>
+  <text x="20" y="192" font-size="11" font-weight="bold" fill="#2471a3">● load_per_hour [kWh/hr]</text>
+  <text x="28" y="206" font-size="10" fill="#5d6d7e">hot-water draw profile</text>
+  <text x="20" y="223" font-size="11" font-weight="bold" fill="#2471a3">● COP [list, per hour]</text>
+  <text x="28" y="237" font-size="10" fill="#5d6d7e">heat pump efficiency profile</text>
+
+  <!-- Action -->
+  <rect x="292" y="86" width="274" height="28" rx="6" fill="#27ae60" opacity="0.18"/>
+  <text x="429" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">easy_shift(parameters)</text>
+  <text x="296" y="120" font-size="11" fill="#5d6d7e">① Rank hours cheapest → expensive</text>
+  <text x="296" y="136" font-size="11" fill="#5d6d7e">② Find first unmet load hour</text>
+  <text x="296" y="152" font-size="11" fill="#5d6d7e">③ Assign HP to cheapest hour at max</text>
+  <text x="296" y="168" font-size="11" fill="#5d6d7e">④ Reduce if tank would overflow</text>
+  <text x="296" y="184" font-size="11" fill="#5d6d7e">⑤ Defer to cheaper future hours</text>
+  <line x1="320" y1="194" x2="538" y2="194" stroke="#a9dfbf" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="429" y="210" text-anchor="middle" font-size="11" fill="#5d6d7e">Repeat until all hours satisfied</text>
+  <text x="429" y="226" text-anchor="middle" font-size="11" fill="#5d6d7e">(or max iterations reached)</text>
+
+  <!-- Outputs -->
+  <text x="598" y="99"  font-size="11" font-weight="bold" fill="#1e8449">● control[h] [kWh/hr]</text>
+  <text x="606" y="113" font-size="10" fill="#5d6d7e">HP thermal output per hour</text>
+  <text x="598" y="130" font-size="11" font-weight="bold" fill="#1e8449">● cost[h] [$/hr]</text>
+  <text x="606" y="144" font-size="10" fill="#5d6d7e">electricity cost per hour</text>
+  <text x="598" y="161" font-size="11" font-weight="bold" fill="#1e8449">● converged (bool)</text>
+  <text x="606" y="175" font-size="10" fill="#5d6d7e">True = feasible schedule found</text>
+  <text x="606" y="189" font-size="10" fill="#5d6d7e">False = trigger fallback logic</text>
+
+  <!-- Customize footer -->
+  <rect x="0" y="252" width="860" height="88" fill="#f8f9fa"/>
+  <line x1="5" y1="252" x2="860" y2="252" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="14" y="268" font-size="10" font-weight="bold" fill="#7f8c8d" letter-spacing="1.5">CUSTOMIZE</text>
+  <text x="14" y="283" font-size="11" fill="#5d6d7e">→ HP capacity: set max_hp_output to your HPWH spec in kW (= kWh at hourly time steps)</text>
+  <text x="14" y="298" font-size="11" fill="#5d6d7e">→ Tank size: max_storage ≈ 12 kWh per 80-gal tank; min_storage = reserve for unexpected demand</text>
+  <text x="14" y="313" font-size="11" fill="#5d6d7e">→ Draw profile: replace [avg_draw]*N with a measured or simulated hourly hot-water draw schedule</text>
+  <text x="14" y="328" font-size="11" fill="#5d6d7e">→ COP profile: replace [cop]*N with hourly COP(T_oa) from manufacturer data or a regression model</text>
+</svg>

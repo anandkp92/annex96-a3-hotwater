@@ -2,4 +2,5 @@ requests
 isodate
 matplotlib
 numpy
+scipy
 jupyter

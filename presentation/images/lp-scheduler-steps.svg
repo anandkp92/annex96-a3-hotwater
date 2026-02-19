@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 365"
+     font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7f8c8d"/>
+    </marker>
+  </defs>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="860" height="40" fill="#eaf2f8"/>
+  <rect x="0" y="0" width="5" height="365" fill="#2471a3"/>
+  <text x="20" y="26" font-size="14" font-weight="bold" fill="#154360">LP Scheduler — Minimum-Cost HPWH Scheduling via Linear Programming</text>
+
+  <!-- Column 1: Variables -->
+  <rect x="10" y="50" width="192" height="240" rx="8" fill="#f2f8fd" stroke="#aed6f1" stroke-width="1.5"/>
+  <text x="106" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9" letter-spacing="1.5">VARIABLES</text>
+  <text x="106" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#154360">e[h]</text>
+  <text x="106" y="108" text-anchor="middle" font-size="11" fill="#5d6d7e">HP thermal output</text>
+  <text x="106" y="124" text-anchor="middle" font-size="11" fill="#5d6d7e">in hour h  [kWh]</text>
+  <line x1="30" y1="135" x2="182" y2="135" stroke="#aed6f1" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="106" y="155" text-anchor="middle" font-size="11" fill="#5d6d7e">one variable</text>
+  <text x="106" y="171" text-anchor="middle" font-size="11" fill="#5d6d7e">per hour in the</text>
+  <text x="106" y="187" text-anchor="middle" font-size="11" fill="#5d6d7e">scheduling horizon</text>
+  <text x="106" y="210" text-anchor="middle" font-size="22" fill="#2471a3" font-weight="bold">N</text>
+  <text x="106" y="228" text-anchor="middle" font-size="11" fill="#5d6d7e">variables total</text>
+
+  <!-- Arrow 1 -->
+  <line x1="202" y1="170" x2="222" y2="170" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Column 2: Objective -->
+  <rect x="222" y="50" width="200" height="240" rx="8" fill="#fef9e7" stroke="#f7dc6f" stroke-width="1.5"/>
+  <text x="322" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#9a7d0a" letter-spacing="1.5">OBJECTIVE</text>
+  <text x="322" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#7d6608">Minimise total cost</text>
+  <rect x="238" y="100" width="168" height="38" rx="5" fill="#fdebd0" stroke="#f5cba7" stroke-width="1"/>
+  <text x="322" y="115" text-anchor="middle" font-size="11" font-weight="bold" fill="#7d6608">min Σ e[h] · price[h]</text>
+  <text x="322" y="130" text-anchor="middle" font-size="11" font-weight="bold" fill="#7d6608">        ─────────────</text>
+  <text x="365" y="130" text-anchor="middle" font-size="11" font-weight="bold" fill="#7d6608">COP[h]</text>
+  <line x1="240" y1="150" x2="422" y2="150" stroke="#f7dc6f" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="322" y="168" text-anchor="middle" font-size="11" fill="#5d6d7e">Electrical energy cost</text>
+  <text x="322" y="184" text-anchor="middle" font-size="11" fill="#5d6d7e">= thermal output / COP</text>
+  <text x="322" y="200" text-anchor="middle" font-size="11" fill="#5d6d7e">× electricity price</text>
+  <text x="322" y="222" text-anchor="middle" font-size="11" fill="#5d6d7e">Globally optimal — no</text>
+  <text x="322" y="238" text-anchor="middle" font-size="11" fill="#5d6d7e">greedy approximation</text>
+
+  <!-- Arrow 2 -->
+  <line x1="422" y1="170" x2="442" y2="170" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Column 3: Constraints -->
+  <rect x="442" y="50" width="210" height="240" rx="8" fill="#f9ebea" stroke="#f1948a" stroke-width="1.5"/>
+  <text x="547" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#922b21" letter-spacing="1.5">CONSTRAINTS</text>
+  <text x="547" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#922b21">Per-hour bounds</text>
+  <text x="460" y="103" font-size="10" fill="#5d6d7e">  min_input[h] ≤ e[h] ≤ max_input[h]</text>
+  <line x1="460" y1="113" x2="638" y2="113" stroke="#f1948a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="547" y="130" text-anchor="middle" font-size="11" font-weight="bold" fill="#922b21">Storage upper bound</text>
+  <text x="460" y="145" font-size="10" fill="#5d6d7e">  Σ_{i≤h} e[i] ≤ (max_soc − σ₀)</text>
+  <text x="476" y="158" font-size="10" fill="#5d6d7e">                    + Σ_{i≤h} load[i]</text>
+  <line x1="460" y1="167" x2="638" y2="167" stroke="#f1948a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="547" y="184" text-anchor="middle" font-size="11" font-weight="bold" fill="#922b21">Storage lower bound</text>
+  <text x="460" y="199" font-size="10" fill="#5d6d7e">  Σ_{i≤h} e[i] ≥ (min_soc − σ₀)</text>
+  <text x="476" y="212" font-size="10" fill="#5d6d7e">                    + Σ_{i≤h} load[i]</text>
+  <line x1="460" y1="222" x2="638" y2="222" stroke="#f1948a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="547" y="237" text-anchor="middle" font-size="10" fill="#7f8c8d">L·e ≤ b, −L·e ≤ b′ via</text>
+  <text x="547" y="251" text-anchor="middle" font-size="10" fill="#7f8c8d">lower-triangular matrix L</text>
+
+  <!-- Arrow 3 -->
+  <line x1="652" y1="170" x2="672" y2="170" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Column 4: Solver -->
+  <rect x="672" y="50" width="178" height="240" rx="8" fill="#eafaf1" stroke="#abebc6" stroke-width="1.5"/>
+  <text x="761" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449" letter-spacing="1.5">SOLVER</text>
+  <rect x="692" y="80" width="138" height="32" rx="6" fill="#27ae60" opacity="0.2"/>
+  <text x="761" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">scipy linprog</text>
+  <text x="761" y="110" text-anchor="middle" font-size="11" fill="#5d6d7e">(HiGHS backend)</text>
+  <line x1="692" y1="120" x2="830" y2="120" stroke="#abebc6" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="761" y="138" text-anchor="middle" font-size="11" fill="#5d6d7e">Feasible → optimal</text>
+  <text x="761" y="154" text-anchor="middle" font-size="11" fill="#5d6d7e">schedule returned</text>
+  <text x="761" y="172" text-anchor="middle" font-size="11" fill="#5d6d7e">converged = True</text>
+  <line x1="692" y1="182" x2="830" y2="182" stroke="#abebc6" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="761" y="200" text-anchor="middle" font-size="11" fill="#5d6d7e">Infeasible → max-</text>
+  <text x="761" y="216" text-anchor="middle" font-size="11" fill="#5d6d7e">input fallback with</text>
+  <text x="761" y="232" text-anchor="middle" font-size="11" fill="#5d6d7e">converged = False</text>
+
+  <!-- Bottom note -->
+  <rect x="0" y="298" width="860" height="67" fill="#f8f9fa"/>
+  <line x1="5" y1="298" x2="860" y2="298" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="430" y="318" text-anchor="middle" font-size="11" fill="#5d6d7e">Globally optimal: given exact prices and load forecast, LP finds the minimum-cost feasible schedule in milliseconds</text>
+  <text x="430" y="338" text-anchor="middle" font-size="11" fill="#5d6d7e">For receding-horizon control: re-solve at each interval with updated price/load forecasts</text>
+</svg>

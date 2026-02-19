@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340"
+     font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+
+  <!-- Header -->
+  <rect x="0" y="0" width="860" height="58" fill="#eaf2f8"/>
+  <rect x="0" y="0" width="5" height="340" fill="#2471a3"/>
+  <circle cx="33" cy="29" r="18" fill="#2471a3"/>
+  <text x="33" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="white">7</text>
+  <text x="62" y="23" font-size="17" font-weight="bold" fill="#154360">Generate CTA-2045 Schedule</text>
+  <text x="62" y="44" font-size="12" fill="#5d6d7e">Map the HP schedule to discrete demand-response commands for the water heater</text>
+
+  <!-- Column boxes -->
+  <rect x="10"  y="64" width="261" height="182" rx="8" fill="#f2f8fd" stroke="#aed6f1" stroke-width="1"/>
+  <rect x="281" y="64" width="297" height="182" rx="8" fill="#d6eaf8" stroke="#2471a3" stroke-width="1.5"/>
+  <rect x="588" y="64" width="261" height="182" rx="8" fill="#f0fcf5" stroke="#abebc6" stroke-width="1"/>
+
+  <!-- Column labels -->
+  <text x="140" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980b9"  letter-spacing="1.5">INPUTS</text>
+  <text x="429" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#154360"  letter-spacing="1.5">WHAT IT DOES</text>
+  <text x="718" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449"  letter-spacing="1.5">OUTPUTS</text>
+
+  <!-- Inputs -->
+  <text x="20" y="99"  font-size="11" font-weight="bold" fill="#2471a3">● schedule dict (Step 6)</text>
+  <text x="28" y="113" font-size="10" fill="#5d6d7e">schedule["control"] per hour</text>
+  <text x="20" y="130" font-size="11" font-weight="bold" fill="#2471a3">● params (Step 6)</text>
+  <text x="28" y="144" font-size="10" fill="#5d6d7e">params["max_input"] per hour</text>
+
+  <!-- Action -->
+  <rect x="292" y="86" width="274" height="28" rx="6" fill="#2471a3" opacity="0.18"/>
+  <text x="429" y="104" text-anchor="middle" font-size="12" font-weight="bold" fill="#154360">hpwh_load_shift_to_cta2045(sched, params)</text>
+  <text x="429" y="119" text-anchor="middle" font-size="11" fill="#5d6d7e">fraction = control[h] / max_input[h]</text>
+  <line x1="310" y1="128" x2="548" y2="128" stroke="#aed6f1" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Signal mapping table -->
+  <rect x="296" y="134" width="265" height="96" rx="5" fill="white" stroke="#aed6f1" stroke-width="1"/>
+  <text x="340" y="150" font-size="11" fill="#5d6d7e">fraction = 0%</text>
+  <rect x="483" y="138" width="68" height="18" rx="3" fill="#e74c3c"/>
+  <text x="517" y="151" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Shed  (−1)</text>
+  <text x="340" y="168" font-size="11" fill="#5d6d7e">0% – 30%</text>
+  <rect x="483" y="157" width="68" height="18" rx="3" fill="#95a5a6"/>
+  <text x="517" y="170" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Normal (0)</text>
+  <text x="340" y="186" font-size="11" fill="#5d6d7e">30% – 80%</text>
+  <rect x="483" y="175" width="68" height="18" rx="3" fill="#3498db"/>
+  <text x="517" y="188" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Load Up (1)</text>
+  <text x="340" y="204" font-size="11" fill="#5d6d7e">≥ 80%</text>
+  <rect x="483" y="193" width="68" height="18" rx="3" fill="#27ae60"/>
+  <text x="517" y="206" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Adv LU (2)</text>
+
+  <text x="429" y="245" text-anchor="middle" font-size="11" fill="#5d6d7e">Repeat for every hour in horizon</text>
+
+  <!-- Outputs -->
+  <text x="598" y="99"  font-size="11" font-weight="bold" fill="#1e8449">● signals per hour</text>
+  <text x="606" y="113" font-size="10" fill="#5d6d7e">list of [-1, 0, 1, 2] values</text>
+  <text x="598" y="130" font-size="11" font-weight="bold" fill="#1e8449">● signal_names per hour</text>
+  <text x="606" y="144" font-size="10" fill="#5d6d7e">["Shed", "Normal", …]</text>
+  <text x="598" y="161" font-size="11" font-weight="bold" fill="#1e8449">● Formatted schedule string</text>
+  <text x="606" y="175" font-size="10" fill="#5d6d7e">via format_schedule() for logging</text>
+  <text x="598" y="196" font-size="11" font-weight="bold" fill="#1e8449">● plot_schedule() figure</text>
+  <text x="606" y="210" font-size="10" fill="#5d6d7e">bar chart of signals over time</text>
+
+  <!-- Customize footer -->
+  <rect x="0" y="252" width="860" height="88" fill="#f8f9fa"/>
+  <line x1="5" y1="252" x2="860" y2="252" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="14" y="268" font-size="10" font-weight="bold" fill="#7f8c8d" letter-spacing="1.5">CUSTOMIZE</text>
+  <text x="14" y="283" font-size="11" fill="#5d6d7e">→ Thresholds: change 30% and 80% in hpwh_load_shift_to_cta2045() to match your device's response curve</text>
+  <text x="14" y="298" font-size="11" fill="#5d6d7e">→ Price-based mapping: use prices_to_cta2045(prices) instead — assigns signals by price percentile</text>
+  <text x="14" y="313" font-size="11" fill="#5d6d7e">→ Physical control: replace format_schedule() print with an API call to your HPWH hardware</text>
+  <text x="14" y="328" font-size="11" fill="#5d6d7e">→ Fleet deployment: loop over units and call hpwh_load_shift() + hpwh_load_shift_to_cta2045() per device</text>
+</svg>
