@@ -49,6 +49,9 @@ style: |
     font-size: 0.55em;
     color: #7f8c8d;
   }
+  small-text {
+    font-size: 0.1em;
+  }
 ---
 
 <!-- _class: lead -->
@@ -60,7 +63,7 @@ style: |
 
 ### IEA EBC Annex 96 — Activity A3
 
-**Anand Prakash**
+**Anand Krishnan Prakash**
 Carnegie Mellon University
 anandkrp@andrew.cmu.edu
 
@@ -89,16 +92,22 @@ anandkrp@andrew.cmu.edu
 
 ---
 
-# Why Demand Flexibility?
+# Water Heaters for Demand Flexibility
 
 
 
 - Grid decarbonization requires flexible loads that can **shift consumption**
-- Water heating accounts for **~18% of residential energy use** in the US
+- Water heating accounts for **~18% of residential energy use**<sup>[1]</sup>  (and up to ~40% in multifamily) in the US
+- Field pilots show that water‑heating load can be shifted or avoided during peak/price events <sup>[2]</sup>
 - Heat pump water heaters (HPWHs) with storage tanks are ideal candidates:
   - Thermal storage enables **load shifting** without impacting comfort
   - Can pre-heat during cheap/clean hours, coast during expensive/dirty hours
 - **Challenge:** How do we communicate price signals to devices at scale?
+
+
+<!-- _class: footer -->
+  [1] https://www.energy.gov/energysaver/water-heating
+  [2] https://www.energy.gov/eere/buildings/articles/heat-pump-water-heaters-achieve-significant-peak-reduction-and-energy
 
 ---
 
@@ -109,8 +118,8 @@ anandkrp@andrew.cmu.edu
 Develop an **open-source software toolkit** so that researchers and practitioners can:
 
 1. Set up an OpenADR 3.0 communication infrastructure (VTN + VEN)
-2. Fetch real electricity pricing data and publish it as OpenADR events
-3. Run a control algorithm that converts price signals into HPWH schedules
+2. Fetch dynamic electricity prices and publish it as OpenADR events
+3. Run a control algorithm that converts price signals into HPWH schedules (triggering a change in operation of the HPWH)
 4. Generate CTA-2045 demand response commands for water heaters
 5. Test the full pipeline end-to-end on their own machines
 
@@ -130,7 +139,7 @@ Develop an **open-source software toolkit** so that researchers and practitioner
 
 
 
-**Open Automated Demand Response** — an open standard for communicating DR signals.
+**Open Automated Demand Response** — an protocol for communicating DR signals.
 
 | Concept | Description |
 |---|---|
@@ -144,39 +153,21 @@ REST API (JSON over HTTP) with OAuth 2.0 authentication
 
 ---
 
-# Heat Pump Water Heaters as Flexible Loads
-
-
-
-**How HPWHs provide flexibility:**
-- Tank stores thermal energy (50–80 gal)
-- Heat pump COP of 3–4x vs resistance
-- Can **pre-heat** during low-price hours, **coast** during high-price hours
-- No comfort impact if managed well
-
-| Parameter | Typical Value |
-|---|---|
-| Tank capacity | 50–80 gallons |
-| HP output | 4–5 kW thermal |
-| COP | 2.5–4.5 |
-| Thermal storage | 8–15 kWh |
-
----
-
 # CTA-2045 and Device Communication
 
 
 
 **CTA-2045** is a modular communications interface for energy devices, providing standardized demand response commands for water heaters:
 
-| Signal | Code | Water Heater Action |
+| Signal | DR Mode | Water Heater Action |
 |---|---|---|
 | **Shed** | -1 | Lower setpoint, disable HP — coast on stored energy |
 | **Normal** | 0 | Default operation |
 | **Load Up** | 1 | Raise setpoint, pre-heat the tank |
 | **Adv. Load Up** | 2 | Max setpoint, tight deadband |
 
-This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2045**
+<!-- This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2045** -->
+![w:850](images/cta2045-pipeline.svg)
 
 ---
 
@@ -208,19 +199,43 @@ This project covers the full pipeline: **OpenADR → Control Algorithm → CTA-2
 
 ---
 
+# Assumptions
+
+| Parameter | Typical Value |
+|---|---|
+| Tank capacity | 80 gallons |
+| HP max output | 4.5 kW thermal |
+| COP | 3 (constant) |
+| Thermal storage | 12 kWh |
+| Minimum thermal storage | 1 kWh |
+| Average water draw | 1.5 kWh per hour |
+
+These assumptions allow for the implementation of a simple *linear programming* controller.
+
+No reporting capability from the HPWH to the utiltiy has been configured in this demonstration. 
+
+<!-- 
+**How HPWHs provide flexibility:**
+- Tank stores thermal energy (50–80 gal)
+- Heat pump COP of 3–4x vs resistance
+- Can **pre-heat** during low-price hours, **coast** during high-price hours
+- No comfort impact if managed well
+
+
+| Parameter | Typical Value |
+|---|---|
+| Tank capacity | 50–80 gallons |
+| HP output | 4–5 kW thermal |
+| COP | 2.5–4.5 |
+| Thermal storage | 8–15 kWh | -->
+
+---
+
 <!-- _class: lead -->
 <!-- _backgroundColor: #2c3e50 -->
 <!-- _color: #fff -->
 
-# 4. Software Architecture
-
----
-
-# System Architecture
-
-
-
-![w:850](images/system-architecture.svg)
+# 4. Implementation
 
 ---
 
@@ -246,6 +261,15 @@ annex96-a3-hotwater/
 
 ---
 
+
+# System Architecture
+
+
+
+![w:850](images/system-architecture.svg)
+
+---
+
 # Two VTN Options
 
 
@@ -261,26 +285,17 @@ annex96-a3-hotwater/
 
 ---
 
-<!-- _class: lead -->
-<!-- _backgroundColor: #2c3e50 -->
-<!-- _color: #fff -->
-
-# 5. Implementation
-
----
-
 # HPWH Load Shift Scheduler
 
 
-
-Two interchangeable implementations in `controls/`:
-
+Two interchangeable implementations in `controls/`: 1) **LP Scheduler** (`hpwh_load_shift_lp`) and 2) **Heuristic** (`hpwh_load_shift_heuristic`) 
+<!-- 
 | | **LP Scheduler** (`hpwh_load_shift_lp`) | **Heuristic** (`hpwh_load_shift_heuristic`) |
 |---|---|---|
 | **Method** | Linear program (HiGHS via scipy) | Bottom-up greedy |
 | **Solution** | Globally optimal | Near-optimal |
 | **Speed** | Fast (milliseconds) | O(N²) worst case |
-| **Dep.** | scipy | numpy only |
+| **Dep.** | scipy | numpy only | -->
 
 **LP formulation:** min Σ e[h]·price[h]/COP[h] subject to storage bounds and HP capacity bounds.
 
@@ -294,7 +309,7 @@ Two interchangeable implementations in `controls/`:
 
 ![w:850](images/cta2045-pipeline.svg)
 
-> Two approaches: from LP/heuristic scheduler output (uses HP output levels), or directly from prices (uses percentile thresholds).
+<!-- > Two approaches: from LP/heuristic scheduler output (uses HP output levels), or directly from prices (uses percentile thresholds). -->
 
 ---
 
@@ -358,6 +373,8 @@ LP finds the globally optimal allocation — charges exactly what is needed at t
 
 Each step — inputs, what it does, outputs, and what to change for your implementation
 
+Example notebook: https://github.com/anandkp92/annex96-a3-hotwater
+
 ---
 
 # Step 1: Setup & Verify VTN Connection
@@ -406,7 +423,7 @@ Each step — inputs, what it does, outputs, and what to change for your impleme
 <!-- _backgroundColor: #2c3e50 -->
 <!-- _color: #fff -->
 
-# 6. How to Use This Software
+# 5. How to Use This Software
 
 ---
 
