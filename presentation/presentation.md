@@ -78,9 +78,8 @@ anandkrp@andrew.cmu.edu
 1. **Introduction** — Motivation and goals
 2. **Background** — OpenADR 3.0, demand flexibility, HPWHs
 3. **Use Case** — Price-responsive HPWH control through OpenADR
-4. **Software Architecture** — Components and data flow
-5. **Implementation** — LP/heuristic schedulers and CTA-2045 integration
-6. **How to Use** — Setup, run, and extend
+4. **Implementation** — LP/heuristic schedulers and CTA-2045 integration
+5. **How to Use** — Setup, run, and extend
 
 ---
 
@@ -364,10 +363,6 @@ Total electricity cost: $0.28741
 LP finds the globally optimal allocation — charges exactly what is needed at the cheapest hours.
 
 ---
-
-<!-- _class: lead -->
-<!-- _backgroundColor: #1a5276 -->
-<!-- _color: #fff -->
 
 # Quickstart: Step by Step
 
